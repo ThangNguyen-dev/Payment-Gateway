@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <h2 class="text-center">Sign Up</h2>
-    <form method="post" action="{{route('signup')}}">
+    <form method="post" action="{{ route('signup') }}">
         @csrf
         <div class="form-group">
             <label for="inputEmail">Email</label>
@@ -30,6 +30,12 @@
             <label for="inputPassword">Number Phone</label>
             <input type="text" name="number_phone" class="form-control" id="inputPassword" placeholder="Number Phone">
         </div>
-        <button type="submit" class="btn btn-primary">Sign Up</button>
+        <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-primary w-50">Sign Up</button>
+        </div>
+        <div class="d-flex justify-content-center">
+            <a href="{{ route('login') }}">I have a account ?</a>
+            <a href="{{ route('forgotpass') }}" class="ml-5">I am forgot my password ?</a>
+        </div>
     </form>
 @endsection
