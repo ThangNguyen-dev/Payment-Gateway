@@ -13,6 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+use App\Http\Controllers\Auth\AuthController as AuthController;
+
+
+Route::get('/login', function () {
+    return view('auth.login');
 });
+Route::get('/signup', function () {
+    return view('auth.signup');
+});
+Route::post('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/signup', [AuthController::class, 'signup'])->name('signup');
+
+Route::get('/home', function () {
+    return view('home.index');
+})->name('home');
