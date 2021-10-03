@@ -2,18 +2,20 @@
 @include('layouts.nav')
 @extends('layouts.footer')
 @section('content')
-<main role="main">
-
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-      <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class=""></li>
-        <li data-target="#myCarousel" data-slide-to="1" class=""></li>
-        <li data-target="#myCarousel" data-slide-to="2" class="active"></li>
-      </ol>
-      <div class="carousel-inner">
-        <div class="carousel-item">
-          <img class="first-slide img-carousel" src="{{asset('public/img/carousel.jpg')}}" alt="First slide">
-          <div class="container">
+    <main role="main">
+        @if(session('success'))
+            <div class="alert alert-success">{{session('success')}}</div>
+        @endif
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class=""></li>
+                <li data-target="#myCarousel" data-slide-to="1" class=""></li>
+                <li data-target="#myCarousel" data-slide-to="2" class="active"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item">
+                    <img class="first-slide img-carousel" src="{{asset('public/img/carousel.jpg')}}" alt="First slide">
+                    <div class="container">
             <div class="carousel-caption text-left">
               <h1>Example headline.</h1>
               <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>

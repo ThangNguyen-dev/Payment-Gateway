@@ -39,6 +39,8 @@ Route::get('/transfer', function () {
 })->name('transfer');
 Route::post('/transfermoney', [\App\Http\Controllers\TransactionController::class, 'transfermoney'])->name('transfermoney');
 
+Route::post('/getuser', [\App\Http\Controllers\TransactionController::class, 'getuser'])->name('getter');
+
 Route::resource('transaction', \App\Http\Controllers\TransactionController::class);
 Route::resource('notification', \App\Http\Controllers\NotificationController::class);
 

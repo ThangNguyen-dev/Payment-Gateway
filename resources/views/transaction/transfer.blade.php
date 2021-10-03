@@ -22,11 +22,12 @@
                                         <label for="user_id">
                                             <h6>User Phone Number</h6>
                                         </label>
-                                        <input type="number" id="number_phone" name="number_phone"
+                                        <input type="number" onblur="" id="number_phone"
+                                               name="number_phone"
                                                placeholder="User Number Phone"
                                                required
                                                class="form-control ">
-                                        <p style="opacity: 50%; font-weight: bolder" class="ml-1">Nguyen Duc Thang</p>
+                                        <p style="opacity: 50%; font-weight: bolder" id="inforUser" class="ml-1"></p>
                                     </div>
                                     <div class="form-group">
                                         <label for="cardNumber">
@@ -52,7 +53,7 @@
                                     </div>
                                     <div class="card-footer">
                                         <input type="submit" class="subscribe btn btn-primary btn-block shadow-sm"
-                                               value="Confirm Payment">
+                                               id="submit" value="Confirm Payment">
                                 </form>
                             </div>
                         </div> <!-- End -->
@@ -67,6 +68,34 @@
         </div>
     </div>
     <script>
+        $(document).ready(function () {
+            let number_phone = $("#number_phone");
+            number_phone[0].addEventListener('blur', function () {
+                getUser();
+            })
 
+            function getUser() {
+                let _token = $("input[name='_token']").val();
+                let number_phone = getNumberPhone();
+                $("#inforUser").html("");
+                $("#submit").addClass('disabled');
+                $.ajax({
+                    url: "{{ route('getter') }}",
+                    type: 'POST',
+                    data: {_token: _token, number_phone: number_phone},
+                    success: function (data) {
+                        console.log();
+                        if (Object.values(data)[0] != null) {
+                            $("#inforUser").html(Object.values(data)[0]);
+                            $("#submit").removeClass('disabled');
+                        }
+                    }
+                });
+            }
+
+            function getNumberPhone() {
+                return $("#number_phone").val();
+            };
+        });
     </script>
 @endsection

@@ -104,6 +104,27 @@ class TransactionController extends Controller
     }
 
     /**
+     * @param Request $request
+     * @return strin fullname
+     */
+    public function getuser(Request $request)
+    {
+        $user = User::where('number_phone', $request['number_phone'])->first();
+        if (!is_null($user)) {
+            return \response()->json(
+                [
+                    'fullname' => $user['fullname']
+                ]
+                , 200);
+        }
+        return \response()->json(
+            [
+                'message' => "Number Phone not found",
+            ], 404
+        );
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
