@@ -2,19 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Notification;
 use App\Models\Notification_user;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class NotificationController extends Controller
+class Notifications_userController extends Controller
 {
-
-    public function __construct()
-    {
-        return $this->middleware(['auth']);
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -22,8 +15,7 @@ class NotificationController extends Controller
      */
     public function index()
     {
-        $notificationsUser = Notification_user::where('user_id', Auth::id())->get();
-        return view('notification.index', ['notificationsUser' => $notificationsUser]);
+        //
     }
 
     /**
@@ -50,10 +42,10 @@ class NotificationController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Notification  $notification
+     * @param  \App\Models\Notification_user  $notification_user
      * @return \Illuminate\Http\Response
      */
-    public function show(Notification $notification)
+    public function show(Notification_user $notification_user)
     {
         //
     }
@@ -61,10 +53,10 @@ class NotificationController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Notification  $notification
+     * @param  \App\Models\Notification_user  $notification_user
      * @return \Illuminate\Http\Response
      */
-    public function edit(Notification $notification)
+    public function edit(Notification_user $notification_user)
     {
         //
     }
@@ -73,10 +65,10 @@ class NotificationController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Notification  $notification
+     * @param  \App\Models\Notification_user  $notification_user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Notification $notification)
+    public function update(Request $request, Notification_user $notification_user)
     {
         //
     }
@@ -84,10 +76,10 @@ class NotificationController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Notification  $notification
+     * @param  \App\Models\Notification_user  $notification_user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Notification $notification)
+    public function destroy(Notification_user $notification_user)
     {
         //
     }

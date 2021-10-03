@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Transaction_partner extends Model
 {
     use HasFactory;
+    public $guarded = ['id'];
 }

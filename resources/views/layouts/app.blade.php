@@ -13,6 +13,7 @@
     <!-- Styles -->
     <link rel="stylesheet" href="{{asset('public/css/bootstrap.css')}}">
     <link rel="stylesheet" href="{{asset('public/css/custom.css')}}">
+    <link rel="stylesheet" href="{{asset('public/css/transfer.css')}}">
 
 </head>
 

@@ -17,7 +17,7 @@ class AuthController extends Controller
             return redirect()->route('home')->with(['success' => 'User successfully created']);
         };
 
-        return redirect()->route('login')->with(['success' => 'User successfully created']);
+        return back()->withInput()->withErrors(['login' => "Email or password is not correct"]);
     }
 
     public function signup(Request $request)
@@ -68,7 +68,7 @@ class AuthController extends Controller
     public function setPassword(Request $request)
     {
         $passwordReset = Password_reset::where('token', $request->token)->first();
-        $user = User::where('email', $request->email)->first();
+        $user = User::where('email', $request['email'])->first();
 
         if (is_null($passwordReset) || is_null($user)) {
             return redirect()->route('resetPassword');
@@ -83,18 +83,19 @@ class AuthController extends Controller
             [
                 'password' => 'required|min:8|max:50',
                 'password_confirm' => 'required|min:8|max:50',
-                'token' => 'required',
             ]
         );
+        if ($request['password'] != $request['password_confirm']) {
+            return back()->withInput()->withErrors(['password' => 'Passwords do not match']);
+        }
 
         $passwordReset = Password_reset::where('token', $request['token'])->first();
 
         if (is_null($passwordReset)) {
-            return redirect()->route('forgotpass')->with(['alert' => 'Token is invalid']);
+            return back()->withErrors(['password' => 'Token is invalid']);
         };
 
         $user = User::where('email', $passwordReset['email'])->first();
-
         $user->password = bcrypt($request['password']);
 
         $user->update();

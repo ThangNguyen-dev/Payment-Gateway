@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthController as AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,8 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-use App\Http\Controllers\Auth\AuthController as AuthController;
-
 
 Route::get('/login', function () {
     return view('auth.login');
@@ -27,7 +26,7 @@ Route::get('/forgotpassword', function () {
     return view('auth.forgotpass');
 })->name('forgotpass');
 
-Route::get('/setPassword', [AuthController::class,'setPassword'])->name('setPassword');
+Route::get('/setPassword', [AuthController::class, 'setPassword'])->name('setPassword');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::post('/login', [AuthController::class, 'login'])->name('login');
@@ -35,6 +34,13 @@ Route::post('/updatepassword', [AuthController::class, 'updatePassword'])->name(
 Route::post('/forgotpassword', [AuthController::class, 'resetPassword'])->name('resetPassword');
 Route::post('/signup', [AuthController::class, 'signup'])->name('signup');
 
+Route::get('/transfer', function () {
+    return view('transaction.transfer');
+})->name('transfer');
+Route::post('/transfermoney', [\App\Http\Controllers\TransactionController::class, 'transfermoney'])->name('transfermoney');
+
+Route::resource('transaction', \App\Http\Controllers\TransactionController::class);
+Route::resource('notification', \App\Http\Controllers\NotificationController::class);
 
 
 Route::get('/home', function () {

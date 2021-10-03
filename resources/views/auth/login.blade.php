@@ -5,12 +5,16 @@
         @csrf
         <div class="form-group">
             <label for="inputEmail">Email</label>
-            <input type="email" class="form-control" name="email" id="inputEmail" placeholder="Email">
+            <input type="email" class="form-control" name="email" id="inputEmail" placeholder="Email"
+                   value="{{old('email')}}">
         </div>
         <div class="form-group">
             <label for="inputPassword">Password</label>
             <input type="password" name="password" class="form-control" id="inputPassword" placeholder="Password">
         </div>
+        @if($errors->first())
+            <div class="alert alert-danger text-center">{{$errors->first()}}</div>
+        @endif
         <div class="d-flex justify-content-center">
             <button type="submit" class="btn btn-primary w-50">Sign in</button>
         </div>

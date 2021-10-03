@@ -8,3 +8,11 @@
     margin: 0px;
     padding: 0px;
 }
+
+.card__title > a {
+    color: black;
+}
+
+.border-none {
+    border: none;
+}
