@@ -52,7 +52,7 @@
     <!-- Marketing messaging and features
     ================================================== -->
     <!-- Wrap the rest of the page in another container to center all the content. -->
-    <div class="container-fluid">
+    <div class="container">
         <div class="card-group">
             <div class="col-sm-4 card">
                 <img class="card-img-top rounded"

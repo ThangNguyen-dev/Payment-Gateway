@@ -1,19 +1,20 @@
 @extends('layouts.app')
 @section('content')
-    <h2 class="text-center">Login</h2>
+<div class="container">
+    <h1 class="text-center mt-5">Login Payment Gateway</h1>
+    <hr>
     <form method="post" action="{{ route('login') }}" class="align-center">
         @csrf
         <div class="form-group">
             <label for="inputEmail">Email</label>
-            <input type="email" class="form-control" name="email" id="inputEmail" placeholder="Email"
-                   value="{{old('email')}}">
+            <input type="email" class="form-control" name="email" id="inputEmail" placeholder="Email" value="{{old('email')}}">
         </div>
         <div class="form-group">
             <label for="inputPassword">Password</label>
             <input type="password" name="password" class="form-control" id="inputPassword" placeholder="Password">
         </div>
         @if($errors->first())
-            <div class="alert alert-danger text-center">{{$errors->first()}}</div>
+        <div class="alert alert-danger text-center">{{$errors->first()}}</div>
         @endif
         <div class="d-flex justify-content-center">
             <button type="submit" class="btn btn-primary w-50">Sign in</button>
@@ -23,4 +24,5 @@
             <a href="{{ route('signup') }}" class="ml-5">You don't have your account ?</a>
         </div>
     </form>
+</div>
 @endsection

@@ -27,7 +27,7 @@
                                                placeholder="User Number Phone"
                                                required
                                                class="form-control ">
-                                        <p style="opacity: 50%; font-weight: bolder" id="inforUser" class="ml-1"></p>
+                                        <p style="font-weight: bolder" id="inforUser"></p>
                                     </div>
                                     <div class="form-group">
                                         <label for="cardNumber">
@@ -69,6 +69,7 @@
     </div>
     <script>
         $(document).ready(function () {
+            $("#submit").prop('disabled', true);
             let number_phone = $("#number_phone");
             number_phone[0].addEventListener('blur', function () {
                 getUser();
@@ -77,20 +78,27 @@
             function getUser() {
                 let _token = $("input[name='_token']").val();
                 let number_phone = getNumberPhone();
-                $("#inforUser").html("");
-                $("#submit").addClass('disabled');
-                $.ajax({
-                    url: "{{ route('getter') }}",
-                    type: 'POST',
-                    data: {_token: _token, number_phone: number_phone},
-                    success: function (data) {
-                        console.log();
-                        if (Object.values(data)[0] != null) {
-                            $("#inforUser").html(Object.values(data)[0]);
-                            $("#submit").removeClass('disabled');
-                        }
-                    }
-                });
+
+                $("#inforUser").html("").removeClass("alert alert-danger");
+                $("#number_phone").removeClass("is-invalid")
+                if (number_phone !== "") {
+                    $.ajax({
+                        url: "{{ route('getter') }}",
+                        type: 'POST',
+                        data: {_token: _token, number_phone: number_phone},
+                        success: function (data) {
+                            if (Object.values(data)[0] != null) {
+                                $("#submit").prop('disabled', false);
+                                $("#inforUser").removeClass("alert alert-danger").html(Object.values(data)[0]);
+                            }
+                        },
+                        error: function () {
+                            $("#submit").prop('disabled', true);
+                            $("#inforUser").html("Khong Tim Thay Thong Tin User").addClass("alert alert-danger");
+                            $("#number_phone").addClass("is-invalid")
+                        },
+                    });
+                }
             }
 
             function getNumberPhone() {

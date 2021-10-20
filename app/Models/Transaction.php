@@ -11,4 +11,9 @@ class Transaction extends Model
 
     public $guarded = ['id'];
 
+    public function transaction_partner()
+    {
+        return $this->hasOne(Transaction_partner::class, 'transaction_id');
+    }
+
 }

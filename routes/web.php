@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthController as AuthController;
+use App\Http\Controllers\ManageApiController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,6 +24,8 @@ Route::get('/signup', function () {
     return view('auth.signup');
 })->name('signup');
 
+Route::resource('/user', UserController::class)->middleware(['auth']);
+
 Route::get('/forgotpassword', function () {
     return view('auth.forgotpass');
 })->name('forgotpass');
@@ -36,15 +40,16 @@ Route::post('/signup', [AuthController::class, 'signup'])->name('signup');
 
 Route::get('/transfer', function () {
     return view('transaction.transfer');
-})->name('transfer');
-Route::post('/transfermoney', [\App\Http\Controllers\TransactionController::class, 'transfermoney'])->name('transfermoney');
+})->name('transfer')->middleware(['auth']);
+Route::post('/transfermoney', [\App\Http\Controllers\TransactionController::class, 'transfermoney'])->name('transfermoney')->middleware(['auth']);
+Route::post('/bank', [\App\Http\Controllers\TransactionController::class, 'transferMoneyFromBank'])->name('transfermoneyfrombank')->middleware(['auth']);
 
 Route::post('/getuser', [\App\Http\Controllers\TransactionController::class, 'getuser'])->name('getter');
+Route::get('transaction/bank', [\App\Http\Controllers\TransactionController::class, 'bank'])->middleware(['auth'])->name('bank');
 
-Route::resource('transaction', \App\Http\Controllers\TransactionController::class);
-Route::resource('notification', \App\Http\Controllers\NotificationController::class);
-
-
+Route::resource('/api',ManageApiController::class);
+Route::resource('notification', \App\Http\Controllers\NotificationController::class)->middleware(['auth']);
+Route::resource('transaction', \App\Http\Controllers\TransactionController::class)->middleware(['auth']);
 Route::get('/home', function () {
     return view('home.index');
 })->name('home')->middleware(['auth']);

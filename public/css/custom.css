@@ -11,24 +11,82 @@
     width: 100%;
 }
 
-.navbar-login
-{
+.navbar-login {
     width: 305px;
     padding: 10px;
     padding-bottom: 0px;
 }
 
-.navbar-login-session
-{
+.navbar-login-session {
     padding: 10px;
     padding-bottom: 0px;
     padding-top: 0px;
 }
 
-.icon-size
-{
+.icon-size {
     font-size: 87px;
 }
-h5 >a{
+h5 > a {
     color: darkslategray;
+}
+
+.list-group li {
+    text-align: left !important;
+}
+#avatar {
+    border-radius: 50%;
+}
+.list-group > a:hover {
+    color: red;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+.padding {
+    padding:0 5rem !important;
+    margin-left: 20%;
+}
+
+.card {
+    margin-bottom: 1.5rem;
+}
+
+.card {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid #c8ced3;
+    border-radius: 0.25rem;
+}
+
+.card-header:first-child {
+    border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0;
+}
+
+.card-header {
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 0;
+    background-color: #f0f3f5;
+    border-bottom: 1px solid #c8ced3;
+}
+
+.card-body {
+    flex: 1 1 auto;
+    padding: 1.25rem;
+}
+
+.form-control:focus {
+    color: #5c6873;
+    background-color: #fff;
+    border-color: #c8ced3 !important;
+    outline: 0;
+    box-shadow: 0 0 0 #f44336;
+}
+
+#logo{
+    width: 2rem;
 }
