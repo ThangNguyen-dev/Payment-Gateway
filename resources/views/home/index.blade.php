@@ -59,12 +59,9 @@
                      src="https://static.mservice.io/img/s500x240/momo-upload-api-210923150837-637680065171169736.png"
                      alt="Card image cap">
                 <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
+                    <h5 class="card-title">Buy Card Phone</h5>
                     <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
                         additional content. This content is a little bit longer.</p>
-                    <div class="">
-                        Ngày hết hạn: <strong>31/10/2021</strong>
-                    </div>
                     <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                 </div>
             </div>
@@ -76,9 +73,6 @@
                     <h5 class="card-title">Card title</h5>
                     <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
                         additional content. This content is a little bit longer.</p>
-                    <div class="">
-                        Ngày hết hạn: <strong>31/10/2021</strong>
-                    </div>
                     <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                 </div>
             </div>
@@ -90,9 +84,6 @@
                     <h5 class="card-title">Card title</h5>
                     <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
                         additional content. This content is a little bit longer.</p>
-                    <div class="">
-                        Ngày hết hạn: <strong>31/10/2021</strong>
-                    </div>
                     <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                 </div>
             </div>

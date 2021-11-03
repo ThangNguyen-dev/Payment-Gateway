@@ -41,7 +41,7 @@ h5 > a {
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 }
 .padding {
-    padding:0 5rem !important;
+    padding: 0 5rem !important;
     margin-left: 20%;
 }
 
@@ -87,6 +87,16 @@ h5 > a {
     box-shadow: 0 0 0 #f44336;
 }
 
-#logo{
+#logo {
     width: 2rem;
+}
+.transaction:hover {
+    box-shadow: 2px 1px 5px red;
+}
+.update {
+    display: flex;
+    justify-content: center;
+}
+.update input{
+    width: 100%;
 }

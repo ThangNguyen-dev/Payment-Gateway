@@ -18,10 +18,20 @@ class UserController extends Controller
     {
         $user = User::where('id', Auth::id())->first();
         $transactions = array();
-        array_push($transactions,$user->sender);
-        array_push($transactions,$user->receiver);
+
+        if (!$user->receiver->isEmpty()) {
+            foreach ($user->receiver as $receiver) {
+                array_push($transactions, $receiver);
+            }
+        };
+
+        if (!$user->sender->isEmpty()) {
+            foreach ($user->sender as $sender) {
+                array_push($transactions, $sender);
+            }
+        };
         sort($transactions);
-        return view('user.index', ['user' => $user,'transactions'=>$transactions]);
+        return view('user.index', ['user' => $user, 'transactions' => $transactions]);
     }
 
     /**
@@ -64,7 +74,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('user.edit');
     }
 
     /**
@@ -74,9 +84,38 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,User $user)
     {
-        //
+        $data = $request->validate([
+            'fullname' => 'required|max:255',
+            'username' => 'required|max:255',
+            'email' => 'required|max:255|email',
+            'number_phone' => 'required|max:11|min:10',
+        ]);
+        $email = User::where('email', $data['email'])->where('id', '<>', Auth::id())->first();
+
+        /*
+        Check isset email, 
+        if isset return errors
+        */
+        if (!is_null($email)) {
+            return back()->withErrors(['email' => 'Email is already used'])->withInput();
+        }
+
+        $username = User::where('username', $data['username'])->where('id', '<>', Auth::id())->first();
+
+        /*
+        Check isset username, 
+        if isset return errors
+        */
+        if (!is_null($username)) {
+            return back()->withErrors(['username' => 'Username is already used'])->withInput();
+        }
+        
+        $user->update($data);
+
+        return redirect()->route('user.index');
+
     }
 
     /**

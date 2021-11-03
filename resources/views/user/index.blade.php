@@ -10,15 +10,9 @@
             <div class="text-center">
                 <img id="avatar" width="45%" src="{{asset('public/img/avatar_2x.png')}}" class="avatar img-circle img-thumbnail" alt="avatar">
                 <h1 class="text-center">{{Auth::user()->fullname}}</h1>
+                <a href="{{route('user.edit', Auth::id())}}" title="Edit user profile">Edit Profile</a>
             </div>
             </hr><br>
-            <!-- <ul class="list-group">
-                    <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i></li>
-                    <li class="list-group-item text-right"><span class="pull-left"><strong>Shares</strong></span> 125</li>
-                    <li class="list-group-item text-right"><span class="pull-left"><strong>Likes</strong></span> 13</li>
-                    <li class="list-group-item text-right"><span class="pull-left"><strong>Posts</strong></span> 37</li>
-                    <li class="list-group-item text-right"><span class="pull-left"><strong>Followers</strong></span> 78</li>
-                </ul> -->
         </div>
         <!--/col-3-->
         <div class="col-sm-7">
@@ -27,12 +21,17 @@
                     <hr />
                     <div class="form-group">
                         <div class="col-xs-6">
-                            <h5><strong>Account type:</strong> {{Auth::user()->type ==0?'Personal' : 'Organizer'}}
+                            <h5>
+                                <strong>Account type:</strong> {{Auth::user()->type ==0?'Personal' : 'Organizer'}}
                             </h5>
                         </div>
                     </div>
                     <div class="form-group">
-
+                        <div class="col-xs-6">
+                            <h5><strong>User name:</strong> {{Auth::user()->username}}</h5>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <div class="col-xs-6">
                             <h5><strong>Full name:</strong> {{Auth::user()->fullname}}</h5>
                         </div>
@@ -64,19 +63,21 @@
 </div>
 <!--/row-->
 <div class="container">
-
     <div class="row">
-        <h2>Transaction</h2>
+        <div class="row">
+            <h2>Transaction</h2>
+        </div>
         @foreach ($transactions as $transaction)
-        @if ($transaction != null)
-        {{ $transaction }}
-        @endif
+        <div class="card transaction w-100" style="margin-bottom: 0.5rem;">
+            <div class="card-body">
+                <!-- <h5>{{$transaction}}</h5> -->
+                <h5>Thoi gian: {{date(' d/m/Y H:i',strtotime($transaction->created_at))}}</h5>
+                <h5>Price: {{($transaction->send->id) == Auth::id() ? " -"  .$transaction->price : "+" .$transaction->price}}</h5>
+                <h5>Code bill: {{$transaction->code_bill}}</h5>
+                <h5>Message: {{$transaction->description}}</h5>
+            </div>
+        </div>
         @endforeach
-    </div>
-
-    <!-- HISOTORY OVERVIEW -->
-    <div class="row">
-        <h2>History</h2>
     </div>
 
     <!-- REPORT OVERVIEW -->

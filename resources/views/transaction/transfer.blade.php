@@ -100,7 +100,6 @@
                     });
                 }
             }
-
             function getNumberPhone() {
                 return $("#number_phone").val();
             };
