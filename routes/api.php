@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix'=>'v1'], function (){
     Route::post('/getbill',[\App\Http\Controllers\Auth\ClientController::class, 'getBill']);
+    Route::post('/bank',[\App\Http\Controllers\Api\ApiController::class, 'transferBank']);
 });
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

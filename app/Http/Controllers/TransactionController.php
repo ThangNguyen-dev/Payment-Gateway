@@ -57,7 +57,7 @@ class TransactionController extends Controller
                 'description' => ['required'],
             ]
         );
-        $user_sender = Auth::user();
+        $user_sender = User::where('id',Auth::id());
         $user_sender['balance'] = (int)$user_sender['balance'] - (int)$transaction['price'];
         $transaction['title'] = 'Chuyen Tien';
         $transaction['number'] = '1';
