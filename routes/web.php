@@ -17,6 +17,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 
+Route::get('/auth',[\App\Http\Controllers\Auth\ClientController::class, "index"]);
+Route::get('/redirect',function (){
+    $url = (session()->get('redirect'));
+    $url = str_replace("'", "", $url);
+    return redirect()->away($url);
+})->name('redirect');
+
+Route::post('/auth/login',[\App\Http\Controllers\Auth\ClientController::class,'login'])->name('auth.login');
+
 Route::get('/login', function () {
     return view('auth.login');
 });
@@ -52,7 +61,7 @@ Route::resource('notification', \App\Http\Controllers\NotificationController::cl
 Route::resource('transaction', \App\Http\Controllers\TransactionController::class)->middleware(['auth']);
 Route::get('/home', function () {
     return view('home.index');
-})->name('home')->middleware(['auth']);
+})->name('home');
 Route::get('/', function () {
     return view('home.index');
-})->name('home')->middleware(['auth']);
+})->name('home');

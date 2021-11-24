@@ -33,6 +33,7 @@
         </ul>
     </div>
     <div class="mr-5">
+        @if (Auth::user())
         <ul class="navbar-nav mr-auto">
             <li class="nav-item dropdown">
                 <div class="dropdown">
@@ -51,6 +52,12 @@
                 </div>
             </li>
         </ul>
+        @else
+        <div class="nav nav-bar">
+            <a href="{{route('login')}}" class="btn btn-light">Login</a>
+            <a href="{{route('signup')}}" class="btn btn-light">Logout</a>
+        </div>
+        @endif
     </div>
 </nav>
 @endsection

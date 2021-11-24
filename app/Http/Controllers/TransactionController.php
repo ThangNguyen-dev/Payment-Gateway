@@ -58,7 +58,7 @@ class TransactionController extends Controller
             ]
         );
         $user_sender = Auth::user();
-        $user_sender['balance'] = $user_sender['balance'] - $transaction['price'];
+        $user_sender['balance'] = (int)$user_sender['balance'] - (int)$transaction['price'];
         $transaction['title'] = 'Chuyen Tien';
         $transaction['number'] = '1';
 
@@ -69,11 +69,11 @@ class TransactionController extends Controller
         }
         $transaction['user_id_sender'] = Auth::id();
         $transaction['user_id_receiver'] = $user_receiver->id;
-        $user_receiver->balance = $user_receiver->balance + $transaction['price'];
-
+        $user_receiver->balance = (int)$user_receiver->balance + (int)$transaction['price'];
 
         $transaction = Transaction::create($transaction);
         $user_sender = $user_sender->update();
+        $user_receiver->update();
         $notification = [
             'transaction_id' => $transaction->id,
             'title' => 'Chuyen Tien',
@@ -98,7 +98,7 @@ class TransactionController extends Controller
 
         $transaction_partner = [
             'transaction_id' => $transaction->id,
-            'transaction_fullname' => $user_receiver->fullname,
+            'transaction_fullname' => $user_sender->fullname,
             'tax_code' => Str::random(6),
             'representation' => $user_receiver->fullname,
             'identity_card' => rand(1000000, 99999999),
