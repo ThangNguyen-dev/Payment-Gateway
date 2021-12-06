@@ -48,8 +48,8 @@
             </div>
         </div>
         <div class="row">
-            <div class="col mt-3 update w-100">
-                <input type="submit" value="Update" name="Update" class="btn btn-success mt-2">
+            <div class="col mt-3 update">
+                <input type="submit" value="Update" name="Update" class="btn btn-primary mt-2">
             </div>
         </div>
     </form>

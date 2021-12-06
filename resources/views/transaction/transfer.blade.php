@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @extends('layouts.nav')
+@extends('layouts.footer')
 @section('content')
     <div class="container py-5">
         <!-- For demo purpose -->

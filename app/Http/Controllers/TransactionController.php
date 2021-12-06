@@ -25,12 +25,23 @@ class TransactionController extends Controller
      */
     public function index()
     {
+        $senders = Auth::user()->sender;
+        $receivers = Auth::user()->receiver;
+        $transactions = array();
+        foreach ($receivers as $receiver) {
+            array_push($transactions, $receiver);
+        }
+        foreach ($senders as $sender) {
+            array_push($transactions, $sender);
+        }
+        $transactions = collect($transactions);
+
+        dd($transactions->sortBy('created_at'));
         return view('transaction.index');
     }
 
     public function transferMoneyFromBank(Request $request)
     {
-        dd($request);
     }
 
     /**

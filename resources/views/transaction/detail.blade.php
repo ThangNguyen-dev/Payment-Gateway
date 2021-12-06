@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @extends('layouts.nav')
-
+@extends('layouts.footer')
 @section('content')
 
 <div class="list-group pl-5 pr-5 ml-5 mr-5">

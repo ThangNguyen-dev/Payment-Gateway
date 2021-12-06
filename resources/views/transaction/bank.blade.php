@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @extends('layouts.nav')
+@extends('layouts.footer')
 @section('content')
     <div class="row mt-3">
         <div class="col-sm-6" style="margin: auto">

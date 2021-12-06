@@ -61,30 +61,5 @@
     <hr />
     <!--/tab-content-->
 </div>
-<!--/row-->
-<div class="container">
-    <div class="row">
-        <div class="row">
-            <h2>Transaction</h2>
-        </div>
-        @foreach ($transactions as $transaction)
-        <div class="card transaction w-100" style="margin-bottom: 0.5rem;">
-            <div class="card-body">
-                <!-- <h5>{{$transaction}}</h5> -->
-                <h5>Thoi gian: {{date(' d/m/Y H:i',strtotime($transaction->created_at))}}</h5>
-                <h5>Price: {{($transaction->send->id) == Auth::id() ? " -"  .$transaction->price : "+" .$transaction->price}}</h5>
-                <h5>Code bill: {{$transaction->code_bill}}</h5>
-                <h5>Message: {{$transaction->description}}</h5>
-            </div>
-        </div>
-        @endforeach
-    </div>
-
-    <!-- REPORT OVERVIEW -->
-    <div class="row">
-        <h2>Report</h2>
-    </div>
-</div>
-</div>
 
 @endsection

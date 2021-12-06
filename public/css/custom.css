@@ -40,6 +40,7 @@ h5 > a {
     color: red;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 }
+
 .padding {
     padding: 0 5rem !important;
     margin-left: 20%;
@@ -90,16 +91,64 @@ h5 > a {
 #logo {
     width: 2rem;
 }
+
 .transaction:hover {
     box-shadow: 2px 1px 5px red;
 }
+
 .update {
     display: flex;
     justify-content: center;
 }
-.update input{
+
+.update input {
     width: 100%;
 }
-#logo{
+
+#logo {
     height: 10%;
 }
+
+footer > p {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+#pagination {
+    display: flex;
+    justify-content: center
+}
+
+#pagination p {
+    display: none;
+}
+
+div.hidden {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+div.flex-1 {
+    margin-top: 20px;
+}
+
+div > span {
+    border-radius: 5px;
+}
+
+div > a {
+    border-radius: 5px;
+}
+
+svg.w-5 {
+    width: 15px;
+}
+
+#form-login {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
