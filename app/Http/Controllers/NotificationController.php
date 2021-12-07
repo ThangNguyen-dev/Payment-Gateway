@@ -22,7 +22,7 @@ class NotificationController extends Controller
      */
     public function index()
     {
-        $notificationsUser = Notification_user::where('user_id', Auth::id())->paginate(10);
+        $notificationsUser = Notification_user::where('user_id', Auth::id())->orderBy('created_at','DESC')->paginate(10);
         return view('notification.index', ['notificationsUser' => $notificationsUser]);
     }
 

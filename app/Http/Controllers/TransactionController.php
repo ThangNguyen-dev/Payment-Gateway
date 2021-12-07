@@ -35,8 +35,6 @@ class TransactionController extends Controller
             array_push($transactions, $sender);
         }
         $transactions = collect($transactions);
-
-        dd($transactions->sortBy('created_at'));
         return view('transaction.index');
     }
 
