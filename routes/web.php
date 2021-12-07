@@ -59,6 +59,7 @@ Route::get('transaction/bank', [\App\Http\Controllers\TransactionController::cla
 Route::resource('/api',ManageApiController::class);
 Route::resource('notification', \App\Http\Controllers\NotificationController::class)->middleware(['auth']);
 Route::resource('transaction', \App\Http\Controllers\TransactionController::class)->middleware(['auth']);
+
 Route::get('/home', function () {
     return view('home.index');
 })->name('home');

@@ -58,7 +58,10 @@
         </div>
         <!--/tab-pane-->
     </div>
-    <hr />
+    @if(session('success'))
+        <div class="alert alert-success text-center">{{session('success')}}</div>
+    @endif
+    <hr/>
     <!--/tab-content-->
 </div>
 

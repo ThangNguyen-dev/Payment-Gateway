@@ -59,9 +59,12 @@ class ClientController extends Controller
                 'price' => $price,
                 'number' => 1
             ];
+            if ($user_sender->id == $user_receiver->id) {
+                return back()->withInput()->withErrors(['login' => 'User receiver is you']);
+            }
             $transaction = Transaction::create($transaction);
-            $user_receiver->update();
             $user_sender->update();
+            $user_receiver->update();
             $notification = [
                 'transaction_id' => $transaction->id,
                 'title' => 'Thanh toan Online',
@@ -94,6 +97,8 @@ class ClientController extends Controller
                 'identity_card' => rand(1000000, 99999999),
             ];
             $transaction_partner = Transaction_partner::create($transaction_partner);
+        } else {
+            return back()->withInput()->withErrors(['login' => 'Email or password incorrect']);
         };
         $url = (session()->get('redirect'));
         $url = str_replace("'", "", $url);

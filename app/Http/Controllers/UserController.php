@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,22 +15,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user = User::where('id', Auth::id())->first();
-        $transactions = array();
-
-        if (!$user->receiver->isEmpty()) {
-            foreach ($user->receiver as $receiver) {
-                array_push($transactions, $receiver);
-            }
-        };
-
-        if (!$user->sender->isEmpty()) {
-            foreach ($user->sender as $sender) {
-                array_push($transactions, $sender);
-            }
-        };
-        sort($transactions);
-        return view('user.index', ['user' => $user, 'transactions' => $transactions]);
+        return view('user.index');
     }
 
     /**
@@ -95,7 +79,7 @@ class UserController extends Controller
         $email = User::where('email', $data['email'])->where('id', '<>', Auth::id())->first();
 
         /*
-        Check isset email, 
+        Check isset email,
         if isset return errors
         */
         if (!is_null($email)) {
@@ -105,13 +89,13 @@ class UserController extends Controller
         $username = User::where('username', $data['username'])->where('id', '<>', Auth::id())->first();
 
         /*
-        Check isset username, 
+        Check isset username,
         if isset return errors
         */
         if (!is_null($username)) {
             return back()->withErrors(['username' => 'Username is already used'])->withInput();
         }
-        
+
         $user->update($data);
 
         return redirect()->route('user.index');

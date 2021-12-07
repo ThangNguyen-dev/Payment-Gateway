@@ -9,6 +9,7 @@ use App\Models\Transaction_partner;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 
 class TransactionController extends Controller
@@ -40,6 +41,27 @@ class TransactionController extends Controller
 
     public function transferMoneyFromBank(Request $request)
     {
+        $bankAcc = $request->validate(
+            [
+                'username_bank' => 'required',
+                'date_active' => 'required',
+                'money' => 'required',
+                'credit_card' => 'required',
+                'bank' => 'required',
+            ]
+        );
+
+        $respone = Http::post('http://localhost/paymentgateway/api/v1/bank', $bankAcc);
+        $body = json_decode($respone->body(), true);
+
+        if (!$body['status']) {
+            return back()->withInput()->withErrors(['account' => 'An error occurred please try again later']);
+        }
+        $user = User::find(Auth::id());
+        $user['balance'] = $user['balance'] + $body['price'];
+
+        $user->update();
+        return redirect()->route('user.index')->with(['success' => 'Transaction successfully']);
     }
 
     /**

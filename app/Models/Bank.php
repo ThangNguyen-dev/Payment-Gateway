@@ -11,34 +11,34 @@ class Bank extends Model
 
 
     /**
-     * @return array 
+     * @return array
      */
     public static function listBanks()
     {
         return  [
             [
                 "card_number" => "9704151525460896",
-                "date_ative" => "11/18",
+                "date_active" => "11/18",
                 "username_bank" => "NGUYEN VAN A",
                 "bank" => "Vietinbank"
             ],
             [
                 "card_number" => "9704151525460896",
-                "date_ative" => "11/18",
+                "date_active" => "11/18",
                 "username_bank" => "NGUYEN VAN B",
                 "bank" => "Vietinbank"
             ],
             [
                 "card_number" => "9704151525460860",
-                "date_ative" => "12/18",
+                "date_active" => "12/18",
                 "username_bank" => "NGUYEN VAN C",
                 "bank" => "Vietinbank"
             ],
         ];
     }
-    
+
     public static function getOTP()
     {
-        return "11111"; 
+        return "11111";
     }
 }

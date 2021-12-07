@@ -45,7 +45,7 @@
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                         <a href="{{route('user.index')}}" class="dropdown-item" type="button">Profile</a>
-                        <a href="{{route('api.index')}}" class="dropdown-item" type="button">API Manage</a>
+{{--                        <a href="{{route('api.index')}}" class="dropdown-item" type="button">API Manage</a>--}}
                         <!-- <button class="dropdown-item" type="button"></button> -->
                         <a href="{{route('logout')}}" class="dropdown-item" type="button">Logout</a>
                     </div>

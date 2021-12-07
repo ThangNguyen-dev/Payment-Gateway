@@ -5,9 +5,6 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Bank;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use PDO;
-use Symfony\Component\VarDumper\Cloner\Data;
 
 class ApiController extends Controller
 {
@@ -15,19 +12,19 @@ class ApiController extends Controller
     public function transferBank(Request $request)
     {
         $bankAccount = (array)($request->input());
-
         $listAccountBank = Bank::listBanks();
         $money = $bankAccount['money'];
         unset($bankAccount['money']);
         $bankAccountUser = array();
         foreach ($listAccountBank as $bank) {
-            if ($bank == $bankAccount) {
+            if (!array_diff($bank, $bankAccount)) {
                 $bankAccountUser = $bankAccount;
             };
         }
         if (empty($bankAccountUser)) {
             return response()->json(
                 [
+                    "status" => true,
                     "message" => "Bank account not found"
                 ],
                 404
@@ -37,9 +34,11 @@ class ApiController extends Controller
 
         return response()->json(
             [
+                "status" => true,
                 'success' => 'Transfer successfully',
                 'profile' => $bankAccountUser,
-                'balance'=>'5000000 VND',
+                'balance' => '5000000 VND',
+                'price' => $money,
                 'timestamp' => date('d/m/Y H:i:s'),
             ],
             200

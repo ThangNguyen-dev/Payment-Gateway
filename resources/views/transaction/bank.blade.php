@@ -16,16 +16,16 @@
                                 <div class="form-group">
                                     <label for="name">Username bank</label>
                                     <input class="form-control" name="username_bank" id="name" type="text"
-                                        placeholder="Username bank">
+                                           placeholder="Username bank">
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="form-group">
-                                    <label for="name">Date ative</label>
-                                    <input class="form-control" name="date_ative" id="" type="text"
-                                        placeholder="Date ative">
+                                    <label for="name">Date active</label>
+                                    <input class="form-control" name="date_active" id="" type="text"
+                                           placeholder="Date active">
                                 </div>
                             </div>
                         </div>
@@ -33,7 +33,8 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label for="name">Money</label>
-                                    <input class="form-control" id="name" name="money" type="text" placeholder="Money">
+                                    <input class="form-control" id="name" name="money" type="number"
+                                           placeholder="Money">
                                 </div>
                             </div>
                         </div>
@@ -42,8 +43,8 @@
                                 <div class="form-group">
                                     <label for="ccnumber">Credit Card Number</label>
                                     <div class="input-group">
-                                        <input class="form-control" name="credit_card" type="text"
-                                            placeholder="0000 0000 0000 0000" autocomplete="email">
+                                        <input class="form-control" name="credit_card" type="number"
+                                               placeholder="0000 0000 0000 0000" autocomplete="email">
                                         <div class="input-group-append">
                                             <span class="input-group-text">
                                                 <i class="mdi mdi-credit-card"></i>
