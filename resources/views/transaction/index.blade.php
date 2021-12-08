@@ -21,7 +21,6 @@
         <table class="table table-striped table-light">
             <thead>
                 <tr>
-                    <th scope="col">Type</th>
                     <th scope="col">Title</th>
                     <th scope="col">Code Bill</th>
                     <th scope="col">Description</th>
@@ -31,15 +30,14 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach(\Illuminate\Support\Facades\Auth::user()->sender as $sender)
+                @foreach($transactions as $transaction)
                 <tr>
-                    <th scope="row">Send</th>
-                    <td>{{$sender['title']}}</td>
-                    <td>{{$sender['code_bill']}}</td>
-                    <td>{{$sender['description']}}</td>
-                    <td>{{$sender['price']}}</td>
-                    <td>{{date('H:i m/d/Y',strtotime($sender['created_at']))}}</td>
-                    <td><a href="{{route('transaction.show',$sender->id)}}">Detail</a></td>
+                    <td>{{$transaction['title']}}</td>
+                    <td>{{$transaction['code_bill']}}</td>
+                    <td>{{$transaction['description']}}</td>
+                    <td>{{$transaction['price']}}</td>
+                    <td>{{date('H:i m/d/Y',strtotime($transaction['created_at']))}}</td>
+                    <td><a href="{{route('transaction.show',$transaction->id)}}">Detail</a></td>
                 </tr>
             </tbody>
             @endforeach

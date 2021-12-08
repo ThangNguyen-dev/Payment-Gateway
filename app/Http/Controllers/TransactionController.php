@@ -30,13 +30,16 @@ class TransactionController extends Controller
         $receivers = Auth::user()->receiver;
         $transactions = array();
         foreach ($receivers as $receiver) {
+            $receiver['price'] = "+" . $receiver['price'];
             array_push($transactions, $receiver);
         }
         foreach ($senders as $sender) {
+            $sender['price'] = "-" . $sender['price'];
             array_push($transactions, $sender);
         }
-        $transactions = collect($transactions);
-        return view('transaction.index');
+
+        $transactions = collect($transactions)->sortByDesc('created_at');
+        return view('transaction.index', ['transactions' => $transactions]);
     }
 
     public function transferMoneyFromBank(Request $request)
@@ -61,6 +64,7 @@ class TransactionController extends Controller
         $user['balance'] = $user['balance'] + $body['price'];
 
         $user->update();
+
         return redirect()->route('user.index')->with(['success' => 'Transaction successfully']);
     }
 
@@ -88,7 +92,10 @@ class TransactionController extends Controller
                 'description' => ['required'],
             ]
         );
-        $user_sender = User::where('id',Auth::id());
+        $user_sender = User::where('id', Auth::id())->first();
+        if ($user_sender['balance'] < $transaction['price']) {
+            return back()->withInput()->withErrors(['transfer' => "You don't have enough money to make the transaction"]);
+        }
         $user_sender['balance'] = (int)$user_sender['balance'] - (int)$transaction['price'];
         $transaction['title'] = 'Chuyen Tien';
         $transaction['number'] = '1';
@@ -103,7 +110,7 @@ class TransactionController extends Controller
         $user_receiver->balance = (int)$user_receiver->balance + (int)$transaction['price'];
 
         $transaction = Transaction::create($transaction);
-        $user_sender = $user_sender->update();
+        $user_sender->update();
         $user_receiver->update();
         $notification = [
             'transaction_id' => $transaction->id,
@@ -126,7 +133,6 @@ class TransactionController extends Controller
                 'notification_id' => $notification->id,
             ];
         $notification_users = Notification_user::create($notification_users);
-
         $transaction_partner = [
             'transaction_id' => $transaction->id,
             'transaction_fullname' => $user_sender->fullname,

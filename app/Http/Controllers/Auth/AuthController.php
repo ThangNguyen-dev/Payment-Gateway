@@ -60,8 +60,7 @@ class AuthController extends Controller
         $passwordReset['email'] = $user->email;
         $passwordReset['token'] = Str::random(50);
         Password_reset::create($passwordReset);
-
-        echo "http://localhost/paymentgateway/setPassword?email={$passwordReset['email']}&token={$passwordReset['token']}";
+        echo $_SERVER['HTTP_ORIGIN']."/setPassword?email={$passwordReset['email']}&token={$passwordReset['token']}";
         return;
     }
 

@@ -23,11 +23,11 @@
                                         <label for="user_id">
                                             <h6>User Phone Number</h6>
                                         </label>
-                                        <input type="number" onblur="" id="number_phone"
+                                        <input value="{{old('number_phone')}}" type="number" onblur="" id="number_phone"
                                                name="number_phone"
                                                placeholder="User Number Phone"
                                                required
-                                               class="form-control ">
+                                               class="form-control">
                                         <p style="font-weight: bolder" id="inforUser"></p>
                                     </div>
                                     <div class="form-group">
@@ -35,7 +35,8 @@
                                             <h6>Price Transfer</h6>
                                         </label>
                                         <div class="input-group">
-                                            <input type="number" id="price" name="price" placeholder="Price Transfer"
+                                            <input value="{{old('price')}}" type="number" id="price" name="price"
+                                                   placeholder="Price Transfer"
                                                    class="form-control " required>
                                         </div>
                                     </div>
@@ -48,20 +49,21 @@
                                                 <textarea size="4" type="text" name="description"
                                                           placeholder="Description"
                                                           required
-                                                          class="form-control "></textarea>
+                                                          class="form-control ">{{old('description')}}</textarea>
                                             </div>
                                         </div>
                                     </div>
+                                    @if($errors->first('transfer'))
+                                        <div class="alert alert-danger">{{$errors->first('transfer')}}</div>
+                                    @endif
+
                                     <div class="card-footer">
                                         <input type="submit" class="subscribe btn btn-primary btn-block shadow-sm"
                                                id="submit" value="Confirm Payment">
+                                    </div>
                                 </form>
                             </div>
                         </div> <!-- End -->
-                        <p class="text-muted">Note: After clicking on the button, you will be directed to a secure
-                            gateway for payment. After completing the payment process, you will be redirected back
-                            to
-                            the website to view details of your order. </p>
                     </div> <!-- End -->
                     <!-- End -->
                 </div>
