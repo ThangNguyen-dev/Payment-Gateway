@@ -60,7 +60,7 @@ class ClientController extends Controller
                 'number' => 1
             ];
             if ($user_sender->id == $user_receiver->id) {
-                return back()->withInput()->withErrors(['login' => 'User receiver is you']);
+                return back()->withInput()->withErrors(['login' => 'User receive is you']);
             }
             $transaction = Transaction::create($transaction);
             $user_sender->update();
